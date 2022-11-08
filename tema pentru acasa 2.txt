@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="namesCtrl">
+
+<p><b>Sorteaza crescator dupa nume,prenume,grupa sau nota</b>
+<input type="text" ng-model="x"></p>
+
+<table border="1" width="100%">
+<tr>
+<th>Nume</th>
+<th>Prenume</th>
+<th>Grupa</th>
+<th>Nota</th>
+</tr>
+<tr ng-repeat="x in names | orderBy:x">
+<td>{{x.nume}}</td>
+<td>{{x.prenume}}</td>
+<td>{{x.grupa}}</td>
+<td>{{x.nota}}</td>
+</tr>
+</table>
+
+</div>
+
+<script>
+angular.module('myApp', []).controller('namesCtrl', function($scope) {
+    $scope.names = [
+        {nume:'Ion',prenume:'Rosca',grupa:'I2001',nota:7},
+        {nume:'Marin',prenume:'Arap',grupa:'IA2003',nota:8},
+        {nume:'Alina',prenume:'Stepa',grupa:'IA2003',nota:10},
+        {nume:'Arin',prenume:'David',grupa:'IA2001',nota:6},
+        {nume:'Ion',prenume:'Spinu',grupa:'I2001',nota:5},
+        {nume:'Vasile',prenume:'Albu',grupa:'IA2003',nota:9},
+        {nume:'Alex',prenume:'Prodan',grupa:'IA2001',nota:7},
+        {nume:'Dorin',prenume:'Bota',grupa:'IA2001',nota:8},
+        {nume:'Mihai',prenume:'Caduc',grupa:'I2001',nota:7}
+        ];
+    $scope.orderByMe  = function(x) {
+         if($scope.x=="nume"){
+    return x;}else
+            if($scope.x=="prenume"){
+    return x;}else
+            if($scope.x=="grupa"){
+    return x;}else
+            if($scope.x=="nota"){
+    return x ;}
+   
+    }
+});
+</script>
+
+</body>
+</html>

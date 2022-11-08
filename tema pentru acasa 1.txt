@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="operatieCtrl">
+<input type="number" ng-model="first">
+<input type="text" ng-model="op">
+<input type="number" ng-model="second"><br>
+<p>Afisare prin functie</p>
+Rezultat= {{rezultat()}}<br>
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+app.controller('operatieCtrl', function($scope) {
+  $scope.first;
+  $scope.second;
+  $scope.op;
+  $scope.rezultat = function(){
+  if($scope.op=="+"){
+    return $scope.first + $scope.second;}
+    
+  else if($scope.op=="-"){
+    return $scope.first - $scope.second;}
+    
+  else if($scope.op=="*"){
+    return $scope.first * $scope.second;}
+    
+  else if($scope.op=="/"){
+    return $scope.first / $scope.second;}
+    
+    
+    };
+});
+</script>
+
+
+</body>
+</html>

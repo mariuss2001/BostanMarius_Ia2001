@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<style>
+.table {
+   display: table;
+   background-color:rgb(235, 173, 173);
+   height:250px;
+   border:1px solid;
+}
+
+.row {
+   display: table-row;
+}
+
+.cell {
+   display: table-cell;
+}
+
+.row,
+.cell {border:1px solid;height:25px;  
+padding: 14px;
+}
+</style>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl"> 
+<div class="tab">
+<div class="table" style="float: left;text-align:center;border-right:none">
+<div class="row">
+    <div class="cell"><b>Nume produs</b></div class="cell">
+    <div class="cell"><b>Pret produs</b></div class="cell">
+</div class="row">
+<div class="row" ng-repeat="x in produse">
+    <div class="cell">{{x.nume}}</div class="cell">
+    <div class="cell">{{x.pret}}</div class="cell">
+</div class="row">
+</div>
+<div class="table" style="float: left;text-align:center;border-left:none">
+<div class="row">
+    <div class="cell"><b>Selecteaza</b></div class="cell">
+</div class="row">
+<div class="row">
+    <div class="cell"><input type="checkbox" ng-model="opts.val1" ng-true-value="25"></div class="cell">
+</div class="row">
+<div class="row">
+    <div class="cell"><input type="checkbox" ng-model="opts.val2" ng-true-value="7"></div class="cell">
+</div class="row">
+<div class="row">
+    <div class="cell"><input type="checkbox" ng-model="opts.val3" ng-true-value="5"></div class="cell">
+</div class="row">
+<div class="row">
+    <div class="cell"><input type="checkbox" ng-model="opts.val4" ng-true-value="78"></div class="cell">
+</div class="row">
+<div class="row">
+    <div class="cell"><input type="checkbox" ng-model="opts.val5" ng-true-value="96"></div class="cell">
+</div class="row">
+<div class="row">
+    <div class="cell"><input type="checkbox" ng-model="opts.val6" ng-true-value="11"></div class="cell">
+</div class="row">
+</div>
+</div>
+<br><br>
+ <h2 style="position:absolute;margin-top:350px">Total: {{ Total() }}</b>
+</div>
+<script>
+var app = angular.module('myApp', []);
+app.controller('myCtrl', function($scope) {
+
+$scope.produse=[{nume:"Smantana",pret:25},
+				{nume:"Morcov",pret:7},
+				{nume:"Ceapa",pret:5},
+				{nume:"Peste",pret:78},
+                {nume:"Piept de pui",pret:96},
+                {nume:"Cartofi",pret:11}
+				];
+                
+    $scope.opts = {
+ 	val1: false,
+ 	val2: false,
+    val3: false,
+    val4: false,
+    val5: false,
+    val6: false,
+	};
+    $scope.Total = function () {
+
+  var opts = $scope.opts;
+  var total = opts.val1 + opts.val2+ opts.val3 + opts.val4+opts.val5+opts.val6;
+
+   return  total;
+};
+
+});
+</script>
+
+</body>
+</html>

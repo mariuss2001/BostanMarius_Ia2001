@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<style>
+body{background-color:#F9DFDA ; }
+table, th, td {border: 1px solid; border-collapse: collapse;background-color:#F9C0B6 ;padding: 5px 10px; width:50%;text-align: center;}
+th{background-color: #E98875;}
+select{background-color:#F9C0B6 ;}
+br{margin-bottom: 1px black;}
+
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<body>
+
+<div ng-app="myApp" ng-controller="productsCtrl"> 
+<br>
+<p>Limita randurilor:
+<select ng-model="selectedLimit">
+<option>1</option>
+<option>2</option>
+<option>3</option>
+<option>4</option>
+<option>5</option>
+<option>6</option>
+<option>7</option>
+<option>8</option>
+<option>9</option>
+</select>
+</p>
+
+<table>
+  <tr>
+    <th>Nume produs</th>
+	<th>Pret</th>
+	<th>Categorie</th>
+  </tr>
+  <tr ng-repeat="x in products | limitTo:selectedLimit | filter:selectedCategory | filter:nameFilter | filter:categoryFilter ">
+    <td>{{x.numepr}}</td>
+    <td>{{x.pret|currency : "Lei "}}</td>
+    <td>{{x.categorie}}</td>
+  </tr>
+</table>
+
+<br>
+<p>Filtru dupa categorie:
+<select ng-model="selectedCategory">
+<option>carne</option>
+<option>legume</option>
+<option>lactate</option>
+</select>
+</p>
+<br>
+<p>Filtru dupa produs:
+<select ng-model="nameFilter">
+<option ng-repeat="x in products" ng-value="x.numepr">{{x.numepr}}</option>
+</select> sau dupa categorie: <select ng-model="selectedCategory">
+<option>carne</option>
+<option>legume</option>
+<option>lactate</option>
+</select>
+</p><br>
+<p>Selectati un produs:
+
+<select ng-model="selectedProduct" ng-options="x.numepr for x in products">
+</select></p>
+
+<p>Numele produsului: {{selectedProduct.numepr}}<p>
+<p>Categoria produsului: {{selectedProduct.categorie}}</p>
+
+
+</div>
+
+<script>
+var app = angular.module('myApp', []);
+
+app.controller('productsCtrl', function($scope) {
+    $scope.products = [
+        {numepr:'carne de gaina', pret: 70, categorie: "carne"},
+        {numepr:'cartofi', pret: 11, categorie: "legume"},
+        {numepr:'morcov', pret: 10, categorie: "legume"},
+        {numepr:'smantana', pret: 25, categorie: "lactate"},
+        {numepr:'carne de vita', pret: 112, categorie: "carne"},
+	{numepr:'ceapa', pret: 5, categorie: "legume"},
+	{numepr:'lapte', pret: 20, categorie: "lactate"},
+        {numepr:'carne de porc', pret: 95, categorie: "carne"},
+        {numepr:'cascaval', pret: 50, categorie: "lactate"}
+        ];	 
+        
+        $scope.enableMe = false;
+        $scope.buttonEnable = function() {
+        	$scope.enableMe = !$scope.enableMe;
+        }
+});
+</script>
+
+</body>
+</html>
